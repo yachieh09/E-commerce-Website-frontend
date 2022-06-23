@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { YayShopFormService } from 'src/app/services/yay-shop-form.service';
 import { YayShopValidators } from 'src/app/validators/yay-shop-validators';
 
@@ -25,9 +26,12 @@ export class CheckoutComponent implements OnInit {
   billingAddressStates: State[] = [];
 
   constructor(private formBuilder: FormBuilder,
-              private yayShopFormService: YayShopFormService) { }
+              private yayShopFormService: YayShopFormService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
+
+    this.reviewCartDetails();
 
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
@@ -93,6 +97,20 @@ export class CheckoutComponent implements OnInit {
         this.countries = data;
       }
     );
+  }
+
+  reviewCartDetails() {
+
+    // subscribe to cartService.totalQuantity
+    this.cartService.totalQuantity.subscribe(
+      totalQuantity => this.totalQuantity = totalQuantity
+    );
+
+    // subscribe to cartService.totalPrice
+    this.cartService.totalPrice.subscribe(
+      totalPrice => this.totalPrice = totalPrice
+    );
+
   }
 
   get firstName() { return this.checkoutFormGroup.get('customer.firstName'); }
