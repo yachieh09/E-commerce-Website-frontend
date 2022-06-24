@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  yayShopApiUrl: "https://localhost:8443/api"
+  yayShopApiUrl: "https://localhost:8443/api",
+  stripePublishableKey: "pk_test_51LEJ7BGhqJxxQSQJvz0sZlA7uTZCUYhMCv5sIPKeQVZP6ExgeLEMxMvBm4GsynCc2a4bL42BprIB32J7yoxtLJh700hqoA9DJi"
 };
 
 /*
