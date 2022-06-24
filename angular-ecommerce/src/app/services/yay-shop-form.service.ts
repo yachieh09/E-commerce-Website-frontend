@@ -4,14 +4,15 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Country } from '../common/country';
 import { State } from '../common/state';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class YayShopFormService {
 
-  private countriesUrl = 'http://localhost:8080/api/countries';
-  private statesUrl = 'http://localhost:8080/api/states';
+  private countriesUrl = environment.yayShopApiUrl + '/countries';
+  private statesUrl = environment.yayShopApiUrl + '/states';
 
   constructor(private httpClient: HttpClient) { }
 
