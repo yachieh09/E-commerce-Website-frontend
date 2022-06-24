@@ -44,3 +44,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+angular-ecommerce/ssl-localhost/localhost.key
+angular-ecommerce/ssl-localhost/localhost.crt
