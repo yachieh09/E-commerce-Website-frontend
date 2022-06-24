@@ -50,7 +50,7 @@ export class CheckoutComponent implements OnInit {
       customer: this.formBuilder.group({
         firstName: new FormControl('', [Validators.required, Validators.minLength(2), YayShopValidators.notOnlyWhitespace]),
         lastName: new FormControl('', [Validators.required, Validators.minLength(2), YayShopValidators.notOnlyWhitespace]),
-        email: new FormControl('', [Validators.required, 
+        email: new FormControl(theEmail, [Validators.required, 
                                     Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       shippingAddress: this.formBuilder.group({
@@ -60,7 +60,7 @@ export class CheckoutComponent implements OnInit {
                                    YayShopValidators.notOnlyWhitespace]),
         state: new FormControl('', [Validators.required]),
         country: new FormControl('', [Validators.required]),
-        zipCode: new FormControl(theEmail, [Validators.required, Validators.minLength(2),
+        zipCode: new FormControl('', [Validators.required, Validators.minLength(2),
                                       YayShopValidators.notOnlyWhitespace])
       }),
       billingAddress: this.formBuilder.group({
