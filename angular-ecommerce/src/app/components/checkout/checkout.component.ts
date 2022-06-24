@@ -30,6 +30,8 @@ export class CheckoutComponent implements OnInit {
   shippingAddressStates: State[] = [];
   billingAddressStates: State[] = [];
 
+  storage: Storage = sessionStorage;
+
   constructor(private formBuilder: FormBuilder,
               private yayShopFormService: YayShopFormService,
               private cartService: CartService,
@@ -39,6 +41,10 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
 
     this.reviewCartDetails();
+
+    // read the user's email address from browser storage
+    const theEmail = JSON.parse(this.storage.getItem('userEmail'));
+
 
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
@@ -54,7 +60,7 @@ export class CheckoutComponent implements OnInit {
                                    YayShopValidators.notOnlyWhitespace]),
         state: new FormControl('', [Validators.required]),
         country: new FormControl('', [Validators.required]),
-        zipCode: new FormControl('', [Validators.required, Validators.minLength(2),
+        zipCode: new FormControl(theEmail, [Validators.required, Validators.minLength(2),
                                       YayShopValidators.notOnlyWhitespace])
       }),
       billingAddress: this.formBuilder.group({
